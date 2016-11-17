@@ -11,7 +11,8 @@ if __name__ == "__main__":
     if os.path.isfile(file_name):
         new_filename = raw_input("请输入修改后的文件名：")
         os.rename(file_name, new_filename)
+        print("修改成功！")
     else:
-        print("Your computre does not this %s" % dir)
+        print("Your computre does not this < %s > file" % file_name)
     
     
