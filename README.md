@@ -1,2 +1,1 @@
-# oldboy_py
-python
+python studying
