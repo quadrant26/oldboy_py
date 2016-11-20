@@ -7,8 +7,7 @@
 '''
 shoplist = ('Car price 100000', 'Coffee price 30', 'Bike price 700', 'Pen price 100', 'Computre price 8000', 'Paper price 10')
 list_shop = []
-
-print('Car' in shoplist)
+flag = False
 
 if __name__ == "__main__":
     
@@ -18,15 +17,17 @@ if __name__ == "__main__":
     
     while True:
         # 商品列表
+        
         print("... list_shop begin ...")
         for item in shoplist:
             print(item)
         print("... list_shop end ...")
         
         # 输入商品
-        buy_some = raw_input("27 Please choose your buy something: ")
+        buy_some = raw_input("Please choose your buy something: ")
         # 判断是否选择退出
         if buy_some == 'q' or buy_some == "Q":
+            
             print("Your has choose quit!")
             # 判断是否已经够买了商品
             if len(list_shop):
@@ -35,26 +36,31 @@ if __name__ == "__main__":
                     print('\t' + item_list)
             else:
                 print("You don't have enough to buy anything. Your balance has %d !" % balance)
-                
+            
             break
         else:
             for each_shop in shoplist:
-                # 判断所输入的商品是否在 列表中
-                # error
+                # 判断所输入的商品是否在 列表中\
+                
                 if buy_some.lower() in each_shop.lower():
+                    flag = True
                     item_money = int(each_shop.split(" ")[2:][0])
-                    # 判断余额是否可以够买所输入的商品
-                    if balance < item_money:
-                        print("Your balance is not enough, you can't buy it.")
-                        break
-                    else:
-                        balance = input_content - item_money
-                        print("Your has choose %s add shopping Cart, balance has %d" % (buy_some, balance))
-                        list_shop.append(each_shop)
-                        break
-                        
-                else: # 商品不在列表中
-                    print("55 The cart does not have the goods!")
                     break
-        
-        
+                else: # 商品不在列表中
+                    flag = False
+                
+                if flag == True:
+                    break
+                
+            if flag == True:
+                # 判断余额是否可以够买所输入的商品
+                if balance < item_money:
+                    print("Your balance is not enough, you can't buy it.")
+                else:
+                    balance = input_content - item_money
+                    print("Your has choose %s add shopping Cart, balance has %d" % (buy_some, balance))
+                    list_shop.append(each_shop)
+                break
+            else:
+                print("The cart does not have the goods!")
+                break
